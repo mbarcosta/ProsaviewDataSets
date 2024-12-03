@@ -1,0 +1,116 @@
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_001" targetNamespace="http://bpmn.io/schema/bpmn">
+  <ns0:process id="Process_001" isExecutable="false">
+    <ns0:startEvent id="Default_init">
+      <ns0:outgoing>Flow_Default_init_Pr5</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task id="Pr5" name="Provide_Repair_Cost_Calculation ">
+      <ns0:incoming>Flow_Default_init_Pr5</ns0:incoming>
+      <ns0:outgoing>Flow_Pr5_G0</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="G0">
+      <ns0:incoming>Flow_Pr5_G0</ns0:incoming>
+      <ns0:outgoing>Flow_G0_Re1</ns0:outgoing>
+      <ns0:outgoing>Flow_G0_Ch8</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:task id="Re1" name="Return_Computer_Without_Repair ">
+      <ns0:incoming>Flow_G0_Re1</ns0:incoming>
+      <ns0:outgoing>Flow_Re1_XORCLOSE6</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Ch8" name="Check_and_Repair_Hardware ">
+      <ns0:incoming>Flow_G0_Ch8</ns0:incoming>
+      <ns0:outgoing>Flow_Ch8_Ch2</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Ch2" name="Check_and_Configure_Software ">
+      <ns0:incoming>Flow_Ch8_Ch2</ns0:incoming>
+      <ns0:outgoing>Flow_Ch2_Te8</ns0:outgoing>
+    </ns0:task>
+    <ns0:task id="Te8" name="Test_System_Functionality ">
+      <ns0:incoming>Flow_Ch2_Te8</ns0:incoming>
+      <ns0:outgoing>Flow_Te8_XORCLOSE6</ns0:outgoing>
+    </ns0:task>
+    <ns0:exclusiveGateway id="XORCLOSE6">
+      <ns0:incoming>Flow_Re1_XORCLOSE6</ns0:incoming>
+      <ns0:incoming>Flow_Te8_XORCLOSE6</ns0:incoming>
+      <ns0:outgoing>Flow_XORCLOSE6_END</ns0:outgoing>
+    </ns0:exclusiveGateway>
+    <ns0:endEvent id="END">
+      <ns0:incoming>Flow_XORCLOSE6_END</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="Flow_Default_init_Pr5" sourceRef="Default_init" targetRef="Pr5" />
+    <ns0:sequenceFlow id="Flow_Pr5_G0" sourceRef="Pr5" targetRef="G0" />
+    <ns0:sequenceFlow id="Flow_G0_Re1" sourceRef="G0" targetRef="Re1" />
+    <ns0:sequenceFlow id="Flow_G0_Ch8" sourceRef="G0" targetRef="Ch8" />
+    <ns0:sequenceFlow id="Flow_Re1_XORCLOSE6" sourceRef="Re1" targetRef="XORCLOSE6" />
+    <ns0:sequenceFlow id="Flow_Ch8_Ch2" sourceRef="Ch8" targetRef="Ch2" />
+    <ns0:sequenceFlow id="Flow_Ch2_Te8" sourceRef="Ch2" targetRef="Te8" />
+    <ns0:sequenceFlow id="Flow_Te8_XORCLOSE6" sourceRef="Te8" targetRef="XORCLOSE6" />
+    <ns0:sequenceFlow id="Flow_XORCLOSE6_END" sourceRef="XORCLOSE6" targetRef="END" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_001">
+      <ns1:BPMNShape id="_BPMNShape_Default_init" bpmnElement="Default_init">
+        <ns2:Bounds x="100" y="100" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Pr5" bpmnElement="Pr5">
+        <ns2:Bounds x="250" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_G0" bpmnElement="G0">
+        <ns2:Bounds x="400" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Re1" bpmnElement="Re1">
+        <ns2:Bounds x="550" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Ch8" bpmnElement="Ch8">
+        <ns2:Bounds x="700" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Ch2" bpmnElement="Ch2">
+        <ns2:Bounds x="850" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_Te8" bpmnElement="Te8">
+        <ns2:Bounds x="1000" y="100" width="100" height="80" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_XORCLOSE6" bpmnElement="XORCLOSE6">
+        <ns2:Bounds x="1150" y="100" width="50" height="50" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape id="_BPMNShape_END" bpmnElement="END">
+        <ns2:Bounds x="1300" y="100" width="36" height="36" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge id="Flow_Default_init_Pr5_di" bpmnElement="Flow_Default_init_Pr5">
+        <ns3:waypoint x="136" y="118" />
+        <ns3:waypoint x="250" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Pr5_G0_di" bpmnElement="Flow_Pr5_G0">
+        <ns3:waypoint x="350" y="140" />
+        <ns3:waypoint x="400" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_Re1_di" bpmnElement="Flow_G0_Re1">
+        <ns3:waypoint x="450" y="125" />
+        <ns3:waypoint x="550" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_G0_Ch8_di" bpmnElement="Flow_G0_Ch8">
+        <ns3:waypoint x="450" y="125" />
+        <ns3:waypoint x="700" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Re1_XORCLOSE6_di" bpmnElement="Flow_Re1_XORCLOSE6">
+        <ns3:waypoint x="650" y="140" />
+        <ns3:waypoint x="1150" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Ch8_Ch2_di" bpmnElement="Flow_Ch8_Ch2">
+        <ns3:waypoint x="800" y="140" />
+        <ns3:waypoint x="850" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Ch2_Te8_di" bpmnElement="Flow_Ch2_Te8">
+        <ns3:waypoint x="950" y="140" />
+        <ns3:waypoint x="1000" y="140" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_Te8_XORCLOSE6_di" bpmnElement="Flow_Te8_XORCLOSE6">
+        <ns3:waypoint x="1100" y="140" />
+        <ns3:waypoint x="1150" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_XORCLOSE6_END_di" bpmnElement="Flow_XORCLOSE6_END">
+        <ns3:waypoint x="1200" y="125" />
+        <ns3:waypoint x="1300" y="118" />
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

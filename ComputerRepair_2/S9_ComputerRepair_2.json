@@ -1,0 +1,159 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Pr5"
+      ]
+    },
+    {
+      "id": "Pr5",
+      "name": "Provide_Repair_Cost_Calculation ",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Pr5"
+      ],
+      "outComing": [
+        "Re1",
+        "Ch8"
+      ]
+    },
+    {
+      "id": "Re1",
+      "name": "Return_Computer_Without_Repair ",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE10"
+      ]
+    },
+    {
+      "id": "Ch8",
+      "name": "Check_and_Repair_Hardware ",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Ch2"
+      ]
+    },
+    {
+      "id": "Ch2",
+      "name": "Check_and_Configure_Software ",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Ch8"
+      ],
+      "outComing": [
+        "Te8"
+      ]
+    },
+    {
+      "id": "Te8",
+      "name": "Test_System_Functionality ",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Ch2"
+      ],
+      "outComing": [
+        "Par6"
+      ]
+    },
+    {
+      "id": "Par6",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "Te8"
+      ],
+      "outComing": [
+        "Bi7",
+        "Re5"
+      ]
+    },
+    {
+      "id": "Bi7",
+      "name": "Billing ",
+      "type": "TASK",
+      "branch": "0.0.0.2.1.1.",
+      "inComing": [
+        "Par6"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "Re5",
+      "name": "Return_Repaired_Computer ",
+      "type": "TASK",
+      "branch": "0.0.0.2.1.2.",
+      "inComing": [
+        "Par6"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.1.1.",
+      "inComing": [
+        "Bi7",
+        "Re5"
+      ],
+      "outComing": [
+        "XORCLOSE10"
+      ]
+    },
+    {
+      "id": "XORCLOSE10",
+      "name": "XORCLOSE10",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Re1",
+        "PARCLOSE9"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE10"
+      ],
+      "outComing": []
+    }
+  ]
+}
