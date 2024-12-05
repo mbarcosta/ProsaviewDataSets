@@ -1,0 +1,183 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Ne0"
+      ]
+    },
+    {
+      "id": "Ne0",
+      "name": "New_Order",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Pr7"
+      ]
+    },
+    {
+      "id": "Pr7",
+      "name": "Project",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Ne0"
+      ],
+      "outComing": [
+        "Pr0"
+      ]
+    },
+    {
+      "id": "Pr0",
+      "name": "Project_Evaluation",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Pr7"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Pr0"
+      ],
+      "outComing": [
+        "Fo2",
+        "Par5"
+      ]
+    },
+    {
+      "id": "Fo2",
+      "name": "Forward_Project_to_Production",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Cu7"
+      ]
+    },
+    {
+      "id": "Par5",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "Se3",
+        "In4"
+      ]
+    },
+    {
+      "id": "Se3",
+      "name": "Send_Canceled_Project_to_Sales",
+      "type": "TASK",
+      "branch": "0.0.0.2.1.1.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "In4",
+      "name": "Inform_Customer_of_Cancellation",
+      "type": "TASK",
+      "branch": "0.0.0.2.1.2.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "Cu7",
+      "name": "Cutting",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Fo2"
+      ],
+      "outComing": [
+        "Ca7"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.2.1.1.",
+      "inComing": [
+        "Se3",
+        "In4"
+      ],
+      "outComing": [
+        "XORCLOSE12"
+      ]
+    },
+    {
+      "id": "Ca7",
+      "name": "Casting",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Cu7"
+      ],
+      "outComing": [
+        "Fi0"
+      ]
+    },
+    {
+      "id": "Fi0",
+      "name": "Finishing",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Ca7"
+      ],
+      "outComing": [
+        "XORCLOSE12"
+      ]
+    },
+    {
+      "id": "XORCLOSE12",
+      "name": "XORCLOSE12",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "PARCLOSE9",
+        "Fi0"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "XORCLOSE12"
+      ],
+      "outComing": []
+    }
+  ]
+}
