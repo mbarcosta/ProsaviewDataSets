@@ -1,0 +1,161 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "In6"
+      ]
+    },
+    {
+      "id": "In6",
+      "name": "Inform_Reseravation_Data",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Par2"
+      ]
+    },
+    {
+      "id": "Par2",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "In6"
+      ],
+      "outComing": [
+        "Ch2",
+        "Par6"
+      ]
+    },
+    {
+      "id": "Ch2",
+      "name": "Choose_Accomodations",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par2"
+      ],
+      "outComing": [
+        "Par4"
+      ]
+    },
+    {
+      "id": "Par4",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Ch2"
+      ],
+      "outComing": [
+        "Bi7",
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "Bi7",
+      "name": "Billing",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "Par6",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par2"
+      ],
+      "outComing": [
+        "Sc4",
+        "Bo3"
+      ]
+    },
+    {
+      "id": "Sc4",
+      "name": "Schedule_Schuba_Diving",
+      "type": "TASK",
+      "branch": "0.0.1.2.2.1.",
+      "inComing": [
+        "Par6"
+      ],
+      "outComing": [
+        "PARCLOSE10"
+      ]
+    },
+    {
+      "id": "Bo3",
+      "name": "Book_Diving_Equipment",
+      "type": "TASK",
+      "branch": "0.0.1.2.2.2.",
+      "inComing": [
+        "Par6"
+      ],
+      "outComing": [
+        "PARCLOSE10"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "Bi7",
+        "Par4"
+      ],
+      "outComing": [
+        "PARCLOSE11"
+      ]
+    },
+    {
+      "id": "PARCLOSE10",
+      "name": "PARCLOSE10",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.2.1.",
+      "inComing": [
+        "Sc4",
+        "Bo3"
+      ],
+      "outComing": [
+        "PARCLOSE11"
+      ]
+    },
+    {
+      "id": "PARCLOSE11",
+      "name": "PARCLOSE11",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "PARCLOSE9",
+        "PARCLOSE10"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "PARCLOSE11"
+      ],
+      "outComing": []
+    }
+  ]
+}

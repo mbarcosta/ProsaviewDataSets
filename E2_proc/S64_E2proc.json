@@ -1,0 +1,135 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Par0"
+      ]
+    },
+    {
+      "id": "Par0",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "In6",
+        "PARCLOSE4"
+      ]
+    },
+    {
+      "id": "In6",
+      "name": "Inform_Reseravation_Data",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par0"
+      ],
+      "outComing": [
+        "Ch2"
+      ]
+    },
+    {
+      "id": "Ch2",
+      "name": "Choose_Accomodations",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "In6"
+      ],
+      "outComing": [
+        "PARCLOSE4"
+      ]
+    },
+    {
+      "id": "PARCLOSE4",
+      "name": "PARCLOSE4",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Ch2",
+        "Par0"
+      ],
+      "outComing": [
+        "Par5"
+      ]
+    },
+    {
+      "id": "Par5",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE4"
+      ],
+      "outComing": [
+        "Sc4",
+        "Bi7"
+      ]
+    },
+    {
+      "id": "Sc4",
+      "name": "Schedule_Schuba_Diving",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "Bo3"
+      ]
+    },
+    {
+      "id": "Bi7",
+      "name": "Billing",
+      "type": "TASK",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "Bo3",
+      "name": "Book_Diving_Equipment",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Sc4"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Bi7",
+        "Bo3"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "PARCLOSE9"
+      ],
+      "outComing": []
+    }
+  ]
+}

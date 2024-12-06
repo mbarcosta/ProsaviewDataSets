@@ -1,0 +1,135 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Par0"
+      ]
+    },
+    {
+      "id": "Par0",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "In6",
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "In6",
+      "name": "Inform_Reseravation_Data",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par0"
+      ],
+      "outComing": [
+        "Par3"
+      ]
+    },
+    {
+      "id": "Par3",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "In6"
+      ],
+      "outComing": [
+        "Ch2",
+        "Bo3"
+      ]
+    },
+    {
+      "id": "Ch2",
+      "name": "Choose_Accomodations",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "Par3"
+      ],
+      "outComing": [
+        "PARCLOSE6"
+      ]
+    },
+    {
+      "id": "Bo3",
+      "name": "Book_Diving_Equipment",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.2.",
+      "inComing": [
+        "Par3"
+      ],
+      "outComing": [
+        "PARCLOSE6"
+      ]
+    },
+    {
+      "id": "PARCLOSE6",
+      "name": "PARCLOSE6",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "Ch2",
+        "Bo3"
+      ],
+      "outComing": [
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "PARCLOSE7",
+      "name": "PARCLOSE7",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "PARCLOSE6",
+        "Par0"
+      ],
+      "outComing": [
+        "Sc4"
+      ]
+    },
+    {
+      "id": "Sc4",
+      "name": "Schedule_Schuba_Diving",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE7"
+      ],
+      "outComing": [
+        "Bi7"
+      ]
+    },
+    {
+      "id": "Bi7",
+      "name": "Billing",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Sc4"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "Bi7"
+      ],
+      "outComing": []
+    }
+  ]
+}
