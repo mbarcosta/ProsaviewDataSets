@@ -1,0 +1,171 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Pr6"
+      ]
+    },
+    {
+      "id": "Pr6",
+      "name": "Project_Arrival",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Pr6"
+      ],
+      "outComing": [
+        "Re8",
+        "Re7"
+      ]
+    },
+    {
+      "id": "Re8",
+      "name": "Register_Project ",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE4"
+      ]
+    },
+    {
+      "id": "Re7",
+      "name": "Retrieve_Project",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE4"
+      ]
+    },
+    {
+      "id": "XORCLOSE4",
+      "name": "XORCLOSE4",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Re8",
+        "Re7"
+      ],
+      "outComing": [
+        "Ev0"
+      ]
+    },
+    {
+      "id": "Ev0",
+      "name": "Evaluate",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE4"
+      ],
+      "outComing": [
+        "Fi2"
+      ]
+    },
+    {
+      "id": "Fi2",
+      "name": "Fill_Report",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Ev0"
+      ],
+      "outComing": [
+        "Vi4"
+      ]
+    },
+    {
+      "id": "Vi4",
+      "name": "Visit_in_Loco",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Fi2"
+      ],
+      "outComing": [
+        "G2"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "G2",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Vi4"
+      ],
+      "outComing": [
+        "Is3",
+        "Re6"
+      ]
+    },
+    {
+      "id": "Is3",
+      "name": "Issue_Permit",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G2"
+      ],
+      "outComing": [
+        "XORCLOSE11"
+      ]
+    },
+    {
+      "id": "Re6",
+      "name": "Request_Changes",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G2"
+      ],
+      "outComing": [
+        "XORCLOSE11"
+      ]
+    },
+    {
+      "id": "XORCLOSE11",
+      "name": "XORCLOSE11",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "Is3",
+        "Re6"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "XORCLOSE11"
+      ],
+      "outComing": []
+    }
+  ]
+}
