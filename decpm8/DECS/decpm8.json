@@ -1,0 +1,50 @@
+{
+    "Atividades": [{
+             "id": "a",
+             "nome": "a",
+             "tipo": "tarefa"
+        },
+        {"id": "b",
+        "nome": "b",
+        "tipo": "tarefa"
+        }, 
+        {"id": "c",
+        "nome": "c",
+        "tipo": "tarefa"
+        }, 
+        {"id": "d",
+        "nome": "d",
+        "tipo": "tarefa"
+        },
+        {"id": "e",
+        "nome": "e",
+        "tipo": "tarefa"
+        },
+        {"id": "f",
+        "nome": "f",
+        "tipo": "tarefa"
+        },
+        {"id": "x",
+        "nome": "x",
+        "tipo": "tarefa"
+        },
+         {"id": "y",
+        "nome": "y",
+        "tipo": "tarefa"
+        }
+        ],
+    
+        "Situacoes": [
+                    
+           { "esquerda": [{"id": "a"}],
+           "direita" :  [{"id": "b"}],
+           "operador": "XOR" },
+           { "esquerda": [{"id": "d"},{"id": "x"},{"id": "y"}],
+           "direita" :  [ {"id": "c"}],
+           "operador": "XOR" },
+           { "esquerda": [{"id": "x"}],
+           "direita" :  [{"id": "d"}],
+           "operador": "DEP" }
+        ]
+    }
+    

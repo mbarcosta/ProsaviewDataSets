@@ -1,0 +1,261 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Par0"
+      ]
+    },
+    {
+      "id": "Par0",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "f",
+        "G0"
+      ]
+    },
+    {
+      "id": "f",
+      "name": "f",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par0"
+      ],
+      "outComing": [
+        "Par5"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par0"
+      ],
+      "outComing": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "a",
+      "name": "a",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "b",
+      "name": "b",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE8"
+      ]
+    },
+    {
+      "id": "Par5",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "f"
+      ],
+      "outComing": [
+        "b",
+        "e"
+      ]
+    },
+    {
+      "id": "b",
+      "name": "b",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "e",
+      "name": "e",
+      "type": "TASK",
+      "branch": "0.0.1.1.2.2.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "XORCLOSE8",
+      "name": "XORCLOSE8",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "a",
+        "b"
+      ],
+      "outComing": [
+        "PARCLOSE10"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.2.1.",
+      "inComing": [
+        "b",
+        "e"
+      ],
+      "outComing": [
+        "PARCLOSE10"
+      ]
+    },
+    {
+      "id": "PARCLOSE10",
+      "name": "PARCLOSE10",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "XORCLOSE8",
+        "PARCLOSE9"
+      ],
+      "outComing": [
+        "G5"
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "G5",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE10"
+      ],
+      "outComing": [
+        "Par13",
+        "c"
+      ]
+    },
+    {
+      "id": "c",
+      "name": "c",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G5"
+      ],
+      "outComing": [
+        "XORCLOSE18"
+      ]
+    },
+    {
+      "id": "Par13",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G5"
+      ],
+      "outComing": [
+        "d",
+        "y"
+      ]
+    },
+    {
+      "id": "d",
+      "name": "d",
+      "type": "TASK",
+      "branch": "0.0.0.1.1.1.",
+      "inComing": [
+        "Par13"
+      ],
+      "outComing": [
+        "x"
+      ]
+    },
+    {
+      "id": "y",
+      "name": "y",
+      "type": "TASK",
+      "branch": "0.0.0.1.1.2.",
+      "inComing": [
+        "Par13"
+      ],
+      "outComing": [
+        "PARCLOSE17"
+      ]
+    },
+    {
+      "id": "x",
+      "name": "x",
+      "type": "TASK",
+      "branch": "0.0.0.1.1.1.",
+      "inComing": [
+        "d"
+      ],
+      "outComing": [
+        "PARCLOSE17"
+      ]
+    },
+    {
+      "id": "PARCLOSE17",
+      "name": "PARCLOSE17",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.0.1.1.2.",
+      "inComing": [
+        "y",
+        "x"
+      ],
+      "outComing": [
+        "XORCLOSE18"
+      ]
+    },
+    {
+      "id": "XORCLOSE18",
+      "name": "XORCLOSE18",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "c",
+        "PARCLOSE17"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "XORCLOSE18"
+      ],
+      "outComing": []
+    }
+  ]
+}
