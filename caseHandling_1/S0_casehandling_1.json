@@ -6,66 +6,28 @@
       "branch": "0.0.",
       "inComing": [],
       "outComing": [
-        "Par0"
-      ]
-    },
-    {
-      "id": "Par0",
-      "name": "PAR",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.",
-      "inComing": [
-        "Default_init"
-      ],
-      "outComing": [
-        "Al0",
-        "Fe5"
+        "Al0"
       ]
     },
     {
       "id": "Al0",
       "name": "Student Opens Ticket",
       "type": "TASK",
-      "branch": "0.0.1.1.",
+      "branch": "0.0.",
       "inComing": [
-        "Par0"
+        "Default_init"
       ],
       "outComing": [
         "Cr8"
-      ]
-    },
-    {
-      "id": "Fe5",
-      "name": "Close Ticket",
-      "type": "TASK",
-      "branch": "0.0.1.2.",
-      "inComing": [
-        "Par0"
-      ],
-      "outComing": [
-        "PARCLOSE4"
       ]
     },
     {
       "id": "Cr8",
       "name": "CRA Opens Process in Sipac",
       "type": "TASK",
-      "branch": "0.0.1.1.",
+      "branch": "0.0.",
       "inComing": [
         "Al0"
-      ],
-      "outComing": [
-        "PARCLOSE4"
-      ]
-    },
-    {
-      "id": "PARCLOSE4",
-      "name": "PARCLOSE4",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.2.",
-      "inComing": [
-        "Fe5",
-        "Cr8"
       ],
       "outComing": [
         "En8"
@@ -77,19 +39,31 @@
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
-        "PARCLOSE4"
+        "Cr8"
       ],
       "outComing": [
-        "G0"
+        "Fe5"
       ]
     },
     {
-      "id": "G0",
-      "name": "G0",
-      "type": "EXCLUSIVE_GATEWAY",
+      "id": "Fe5",
+      "name": "Close Ticket",
+      "type": "TASK",
       "branch": "0.0.",
       "inComing": [
         "En8"
+      ],
+      "outComing": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Fe5"
       ],
       "outComing": [
         "En0",
@@ -102,10 +76,10 @@
       "type": "TASK",
       "branch": "0.0.0.2.",
       "inComing": [
-        "G0"
+        "G1"
       ],
       "outComing": [
-        "XORCLOSE14"
+        "XORCLOSE12"
       ]
     },
     {
@@ -114,15 +88,15 @@
       "type": "TASK",
       "branch": "0.0.0.1.",
       "inComing": [
-        "G0"
+        "G1"
       ],
       "outComing": [
-        "G1"
+        "G2"
       ]
     },
     {
-      "id": "G1",
-      "name": "G1",
+      "id": "G2",
+      "name": "G2",
       "type": "EXCLUSIVE_GATEWAY",
       "branch": "0.0.0.1.",
       "inComing": [
@@ -139,10 +113,10 @@
       "type": "TASK",
       "branch": "0.0.0.1.0.2.",
       "inComing": [
-        "G1"
+        "G2"
       ],
       "outComing": [
-        "XORCLOSE13"
+        "XORCLOSE11"
       ]
     },
     {
@@ -151,7 +125,7 @@
       "type": "TASK",
       "branch": "0.0.0.1.0.1.",
       "inComing": [
-        "G1"
+        "G2"
       ],
       "outComing": [
         "Co3"
@@ -166,12 +140,12 @@
         "La0"
       ],
       "outComing": [
-        "XORCLOSE13"
+        "XORCLOSE11"
       ]
     },
     {
-      "id": "XORCLOSE13",
-      "name": "XORCLOSE13",
+      "id": "XORCLOSE11",
+      "name": "XORCLOSE11",
       "type": "EXCLUSIVE_GATEWAY",
       "branch": "0.0.0.1.0.1.",
       "inComing": [
@@ -179,17 +153,17 @@
         "Co5"
       ],
       "outComing": [
-        "XORCLOSE14"
+        "XORCLOSE12"
       ]
     },
     {
-      "id": "XORCLOSE14",
-      "name": "XORCLOSE14",
+      "id": "XORCLOSE12",
+      "name": "XORCLOSE12",
       "type": "EXCLUSIVE_GATEWAY",
       "branch": "0.0.0.2.",
       "inComing": [
         "Av1",
-        "XORCLOSE13"
+        "XORCLOSE11"
       ],
       "outComing": [
         "END"
@@ -201,7 +175,7 @@
       "type": "END_EVENT",
       "branch": "0.0.0.2.",
       "inComing": [
-        "XORCLOSE14"
+        "XORCLOSE12"
       ],
       "outComing": []
     }

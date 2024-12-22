@@ -1,0 +1,235 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Al0"
+      ]
+    },
+    {
+      "id": "Al0",
+      "name": "Student Opens Ticket",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Cr8"
+      ]
+    },
+    {
+      "id": "Cr8",
+      "name": "CRA Opens Process in Sipac",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Al0"
+      ],
+      "outComing": [
+        "En8"
+      ]
+    },
+    {
+      "id": "En8",
+      "name": "Forward Process for Checking Pending Issues",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Cr8"
+      ],
+      "outComing": [
+        "Par3"
+      ]
+    },
+    {
+      "id": "Par3",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "En8"
+      ],
+      "outComing": [
+        "Fe5",
+        "G0"
+      ]
+    },
+    {
+      "id": "Fe5",
+      "name": "Close Ticket",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par3"
+      ],
+      "outComing": [
+        "PARCLOSE16"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par3"
+      ],
+      "outComing": [
+        "Par7",
+        "Av1"
+      ]
+    },
+    {
+      "id": "Av1",
+      "name": "Notify Student About Pending Issues",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE15"
+      ]
+    },
+    {
+      "id": "Par7",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "La0",
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "La0",
+      "name": "Enter in Academic System",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.2.1.",
+      "inComing": [
+        "Par7"
+      ],
+      "outComing": [
+        "PARCLOSE9"
+      ]
+    },
+    {
+      "id": "PARCLOSE9",
+      "name": "PARCLOSE9",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.1.1.2.1.",
+      "inComing": [
+        "La0",
+        "Par7"
+      ],
+      "outComing": [
+        "Par10"
+      ]
+    },
+    {
+      "id": "Par10",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "PARCLOSE9"
+      ],
+      "outComing": [
+        "En0",
+        "Co3"
+      ]
+    },
+    {
+      "id": "En0",
+      "name": "Forward to Coordination",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.2.1.",
+      "inComing": [
+        "Par10"
+      ],
+      "outComing": [
+        "PARCLOSE13"
+      ]
+    },
+    {
+      "id": "Co3",
+      "name": "Notify Approval",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.2.2.",
+      "inComing": [
+        "Par10"
+      ],
+      "outComing": [
+        "PARCLOSE13"
+      ]
+    },
+    {
+      "id": "PARCLOSE13",
+      "name": "PARCLOSE13",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.1.1.2.1.",
+      "inComing": [
+        "En0",
+        "Co3"
+      ],
+      "outComing": [
+        "Co5"
+      ]
+    },
+    {
+      "id": "Co5",
+      "name": "Notify Disapproval",
+      "type": "TASK",
+      "branch": "0.0.1.2.1.1.",
+      "inComing": [
+        "PARCLOSE13"
+      ],
+      "outComing": [
+        "XORCLOSE15"
+      ]
+    },
+    {
+      "id": "XORCLOSE15",
+      "name": "XORCLOSE15",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.1.2.1.2.",
+      "inComing": [
+        "Av1",
+        "Co5"
+      ],
+      "outComing": [
+        "PARCLOSE16"
+      ]
+    },
+    {
+      "id": "PARCLOSE16",
+      "name": "PARCLOSE16",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Fe5",
+        "XORCLOSE15"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "PARCLOSE16"
+      ],
+      "outComing": []
+    }
+  ]
+}
