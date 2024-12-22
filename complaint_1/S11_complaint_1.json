@@ -43,7 +43,7 @@
       ],
       "outComing": [
         "En8",
-        "Re2"
+        "PARCLOSE5"
       ]
     },
     {
@@ -59,18 +59,6 @@
       ]
     },
     {
-      "id": "Re2",
-      "name": "Receive References",
-      "type": "TASK",
-      "branch": "0.0.1.2.",
-      "inComing": [
-        "Par2"
-      ],
-      "outComing": [
-        "Co1"
-      ]
-    },
-    {
       "id": "En4",
       "name": "Forward Complaint Externally",
       "type": "TASK",
@@ -79,29 +67,41 @@
         "En8"
       ],
       "outComing": [
-        "PARCLOSE7"
+        "PARCLOSE5"
+      ]
+    },
+    {
+      "id": "PARCLOSE5",
+      "name": "PARCLOSE5",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par2",
+        "En4"
+      ],
+      "outComing": [
+        "Re2"
+      ]
+    },
+    {
+      "id": "Re2",
+      "name": "Receive References",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE5"
+      ],
+      "outComing": [
+        "Co1"
       ]
     },
     {
       "id": "Co1",
       "name": "Confirm External Reference",
       "type": "TASK",
-      "branch": "0.0.1.2.",
+      "branch": "0.0.",
       "inComing": [
         "Re2"
-      ],
-      "outComing": [
-        "PARCLOSE7"
-      ]
-    },
-    {
-      "id": "PARCLOSE7",
-      "name": "PARCLOSE7",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.1.",
-      "inComing": [
-        "En4",
-        "Co1"
       ],
       "outComing": [
         "In3"
@@ -113,7 +113,7 @@
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
-        "PARCLOSE7"
+        "Co1"
       ],
       "outComing": [
         "G0"

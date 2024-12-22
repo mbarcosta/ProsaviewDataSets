@@ -42,25 +42,25 @@
         "Ab1"
       ],
       "outComing": [
-        "En8",
-        "En4"
-      ]
-    },
-    {
-      "id": "En8",
-      "name": "Forward Complaint Internally",
-      "type": "TASK",
-      "branch": "0.0.1.1.",
-      "inComing": [
-        "Par2"
-      ],
-      "outComing": [
+        "En4",
         "Re2"
       ]
     },
     {
       "id": "En4",
       "name": "Forward Complaint Externally",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par2"
+      ],
+      "outComing": [
+        "En8"
+      ]
+    },
+    {
+      "id": "Re2",
+      "name": "Receive References",
       "type": "TASK",
       "branch": "0.0.1.2.",
       "inComing": [
@@ -71,12 +71,12 @@
       ]
     },
     {
-      "id": "Re2",
-      "name": "Receive References",
+      "id": "En8",
+      "name": "Forward Complaint Internally",
       "type": "TASK",
       "branch": "0.0.1.1.",
       "inComing": [
-        "En8"
+        "En4"
       ],
       "outComing": [
         "PARCLOSE6"
@@ -88,8 +88,8 @@
       "type": "PARALLEL_GATEWAY",
       "branch": "0.0.1.2.",
       "inComing": [
-        "En4",
-        "Re2"
+        "Re2",
+        "En8"
       ],
       "outComing": [
         "Co1"

@@ -55,12 +55,12 @@
         "Par2"
       ],
       "outComing": [
-        "Re2"
+        "En8"
       ]
     },
     {
-      "id": "Re2",
-      "name": "Receive References",
+      "id": "En8",
+      "name": "Forward Complaint Internally",
       "type": "TASK",
       "branch": "0.0.1.1.",
       "inComing": [
@@ -77,15 +77,15 @@
       "branch": "0.0.1.2.",
       "inComing": [
         "Par2",
-        "Re2"
+        "En8"
       ],
       "outComing": [
-        "En8"
+        "Re2"
       ]
     },
     {
-      "id": "En8",
-      "name": "Forward Complaint Internally",
+      "id": "Re2",
+      "name": "Receive References",
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
@@ -101,7 +101,7 @@
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
-        "En8"
+        "Re2"
       ],
       "outComing": [
         "In3"

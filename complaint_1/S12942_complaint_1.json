@@ -1,0 +1,209 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "No6"
+      ]
+    },
+    {
+      "id": "No6",
+      "name": "New Complaint Received",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "Ab1"
+      ]
+    },
+    {
+      "id": "Ab1",
+      "name": "Open a New Case",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "No6"
+      ],
+      "outComing": [
+        "Par2"
+      ]
+    },
+    {
+      "id": "Par2",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Ab1"
+      ],
+      "outComing": [
+        "Re2",
+        "PARCLOSE4"
+      ]
+    },
+    {
+      "id": "Re2",
+      "name": "Receive References",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par2"
+      ],
+      "outComing": [
+        "PARCLOSE4"
+      ]
+    },
+    {
+      "id": "PARCLOSE4",
+      "name": "PARCLOSE4",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Re2",
+        "Par2"
+      ],
+      "outComing": [
+        "Par5"
+      ]
+    },
+    {
+      "id": "Par5",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE4"
+      ],
+      "outComing": [
+        "En8",
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "En8",
+      "name": "Forward Complaint Internally",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "Par5"
+      ],
+      "outComing": [
+        "PARCLOSE7"
+      ]
+    },
+    {
+      "id": "PARCLOSE7",
+      "name": "PARCLOSE7",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.1.",
+      "inComing": [
+        "En8",
+        "Par5"
+      ],
+      "outComing": [
+        "Co1"
+      ]
+    },
+    {
+      "id": "Co1",
+      "name": "Confirm External Reference",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE7"
+      ],
+      "outComing": [
+        "In3"
+      ]
+    },
+    {
+      "id": "In3",
+      "name": "Insert Reference into Incident Record",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Co1"
+      ],
+      "outComing": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G0",
+      "name": "G0",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "In3"
+      ],
+      "outComing": [
+        "In1",
+        "An1"
+      ]
+    },
+    {
+      "id": "In1",
+      "name": "Inform Complainant",
+      "type": "TASK",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE13"
+      ]
+    },
+    {
+      "id": "An1",
+      "name": "Analyze Complaint",
+      "type": "TASK",
+      "branch": "0.0.0.2.",
+      "inComing": [
+        "G0"
+      ],
+      "outComing": [
+        "XORCLOSE13"
+      ]
+    },
+    {
+      "id": "XORCLOSE13",
+      "name": "XORCLOSE13",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.0.1.",
+      "inComing": [
+        "In1",
+        "An1"
+      ],
+      "outComing": [
+        "En4"
+      ]
+    },
+    {
+      "id": "En4",
+      "name": "Forward Complaint Externally",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE13"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "En4"
+      ],
+      "outComing": []
+    }
+  ]
+}

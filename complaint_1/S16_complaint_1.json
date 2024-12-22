@@ -30,32 +30,20 @@
         "No6"
       ],
       "outComing": [
-        "Re2"
+        "Par2"
       ]
     },
     {
-      "id": "Re2",
-      "name": "Receive References",
-      "type": "TASK",
+      "id": "Par2",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
       "branch": "0.0.",
       "inComing": [
         "Ab1"
       ],
       "outComing": [
-        "Par3"
-      ]
-    },
-    {
-      "id": "Par3",
-      "name": "PAR",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.",
-      "inComing": [
-        "Re2"
-      ],
-      "outComing": [
         "En8",
-        "PARCLOSE5"
+        "Re2"
       ]
     },
     {
@@ -64,32 +52,44 @@
       "type": "TASK",
       "branch": "0.0.1.1.",
       "inComing": [
-        "Par3"
-      ],
-      "outComing": [
-        "PARCLOSE5"
-      ]
-    },
-    {
-      "id": "PARCLOSE5",
-      "name": "PARCLOSE5",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.1.",
-      "inComing": [
-        "En8",
-        "Par3"
+        "Par2"
       ],
       "outComing": [
         "En4"
       ]
     },
     {
+      "id": "Re2",
+      "name": "Receive References",
+      "type": "TASK",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Par2"
+      ],
+      "outComing": [
+        "PARCLOSE6"
+      ]
+    },
+    {
       "id": "En4",
       "name": "Forward Complaint Externally",
       "type": "TASK",
-      "branch": "0.0.",
+      "branch": "0.0.1.1.",
       "inComing": [
-        "PARCLOSE5"
+        "En8"
+      ],
+      "outComing": [
+        "PARCLOSE6"
+      ]
+    },
+    {
+      "id": "PARCLOSE6",
+      "name": "PARCLOSE6",
+      "type": "PARALLEL_GATEWAY",
+      "branch": "0.0.1.2.",
+      "inComing": [
+        "Re2",
+        "En4"
       ],
       "outComing": [
         "Co1"
@@ -101,7 +101,7 @@
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
-        "En4"
+        "PARCLOSE6"
       ],
       "outComing": [
         "In3"

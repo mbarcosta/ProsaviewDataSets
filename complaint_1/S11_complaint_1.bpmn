@@ -14,31 +14,31 @@
     <ns0:parallelGateway id="Par2">
       <ns0:incoming>Flow_Ab1_Par2</ns0:incoming>
       <ns0:outgoing>Flow_Par2_En8</ns0:outgoing>
-      <ns0:outgoing>Flow_Par2_Re2</ns0:outgoing>
+      <ns0:outgoing>Flow_Par2_PARCLOSE5</ns0:outgoing>
     </ns0:parallelGateway>
     <ns0:task id="En8" name="Forward Complaint Internally">
       <ns0:incoming>Flow_Par2_En8</ns0:incoming>
       <ns0:outgoing>Flow_En8_En4</ns0:outgoing>
     </ns0:task>
-    <ns0:task id="Re2" name="Receive References">
-      <ns0:incoming>Flow_Par2_Re2</ns0:incoming>
-      <ns0:outgoing>Flow_Re2_Co1</ns0:outgoing>
-    </ns0:task>
     <ns0:task id="En4" name="Forward Complaint Externally">
       <ns0:incoming>Flow_En8_En4</ns0:incoming>
-      <ns0:outgoing>Flow_En4_PARCLOSE7</ns0:outgoing>
+      <ns0:outgoing>Flow_En4_PARCLOSE5</ns0:outgoing>
+    </ns0:task>
+    <ns0:parallelGateway id="PARCLOSE5">
+      <ns0:incoming>Flow_Par2_PARCLOSE5</ns0:incoming>
+      <ns0:incoming>Flow_En4_PARCLOSE5</ns0:incoming>
+      <ns0:outgoing>Flow_PARCLOSE5_Re2</ns0:outgoing>
+    </ns0:parallelGateway>
+    <ns0:task id="Re2" name="Receive References">
+      <ns0:incoming>Flow_PARCLOSE5_Re2</ns0:incoming>
+      <ns0:outgoing>Flow_Re2_Co1</ns0:outgoing>
     </ns0:task>
     <ns0:task id="Co1" name="Confirm External Reference">
       <ns0:incoming>Flow_Re2_Co1</ns0:incoming>
-      <ns0:outgoing>Flow_Co1_PARCLOSE7</ns0:outgoing>
+      <ns0:outgoing>Flow_Co1_In3</ns0:outgoing>
     </ns0:task>
-    <ns0:parallelGateway id="PARCLOSE7">
-      <ns0:incoming>Flow_En4_PARCLOSE7</ns0:incoming>
-      <ns0:incoming>Flow_Co1_PARCLOSE7</ns0:incoming>
-      <ns0:outgoing>Flow_PARCLOSE7_In3</ns0:outgoing>
-    </ns0:parallelGateway>
     <ns0:task id="In3" name="Insert Reference into Incident Record">
-      <ns0:incoming>Flow_PARCLOSE7_In3</ns0:incoming>
+      <ns0:incoming>Flow_Co1_In3</ns0:incoming>
       <ns0:outgoing>Flow_In3_G0</ns0:outgoing>
     </ns0:task>
     <ns0:exclusiveGateway id="G0">
@@ -66,12 +66,12 @@
     <ns0:sequenceFlow id="Flow_No6_Ab1" sourceRef="No6" targetRef="Ab1" />
     <ns0:sequenceFlow id="Flow_Ab1_Par2" sourceRef="Ab1" targetRef="Par2" />
     <ns0:sequenceFlow id="Flow_Par2_En8" sourceRef="Par2" targetRef="En8" />
-    <ns0:sequenceFlow id="Flow_Par2_Re2" sourceRef="Par2" targetRef="Re2" />
+    <ns0:sequenceFlow id="Flow_Par2_PARCLOSE5" sourceRef="Par2" targetRef="PARCLOSE5" />
     <ns0:sequenceFlow id="Flow_En8_En4" sourceRef="En8" targetRef="En4" />
+    <ns0:sequenceFlow id="Flow_En4_PARCLOSE5" sourceRef="En4" targetRef="PARCLOSE5" />
+    <ns0:sequenceFlow id="Flow_PARCLOSE5_Re2" sourceRef="PARCLOSE5" targetRef="Re2" />
     <ns0:sequenceFlow id="Flow_Re2_Co1" sourceRef="Re2" targetRef="Co1" />
-    <ns0:sequenceFlow id="Flow_En4_PARCLOSE7" sourceRef="En4" targetRef="PARCLOSE7" />
-    <ns0:sequenceFlow id="Flow_Co1_PARCLOSE7" sourceRef="Co1" targetRef="PARCLOSE7" />
-    <ns0:sequenceFlow id="Flow_PARCLOSE7_In3" sourceRef="PARCLOSE7" targetRef="In3" />
+    <ns0:sequenceFlow id="Flow_Co1_In3" sourceRef="Co1" targetRef="In3" />
     <ns0:sequenceFlow id="Flow_In3_G0" sourceRef="In3" targetRef="G0" />
     <ns0:sequenceFlow id="Flow_G0_In1" sourceRef="G0" targetRef="In1" />
     <ns0:sequenceFlow id="Flow_G0_An1" sourceRef="G0" targetRef="An1" />
@@ -96,17 +96,17 @@
       <ns1:BPMNShape id="_BPMNShape_En8" bpmnElement="En8">
         <ns2:Bounds x="700" y="100" width="100" height="80" />
       </ns1:BPMNShape>
-      <ns1:BPMNShape id="_BPMNShape_Re2" bpmnElement="Re2">
+      <ns1:BPMNShape id="_BPMNShape_En4" bpmnElement="En4">
         <ns2:Bounds x="850" y="100" width="100" height="80" />
       </ns1:BPMNShape>
-      <ns1:BPMNShape id="_BPMNShape_En4" bpmnElement="En4">
-        <ns2:Bounds x="1000" y="100" width="100" height="80" />
+      <ns1:BPMNShape id="_BPMNShape_PARCLOSE5" bpmnElement="PARCLOSE5">
+        <ns2:Bounds x="1000" y="100" width="50" height="50" />
       </ns1:BPMNShape>
-      <ns1:BPMNShape id="_BPMNShape_Co1" bpmnElement="Co1">
+      <ns1:BPMNShape id="_BPMNShape_Re2" bpmnElement="Re2">
         <ns2:Bounds x="1150" y="100" width="100" height="80" />
       </ns1:BPMNShape>
-      <ns1:BPMNShape id="_BPMNShape_PARCLOSE7" bpmnElement="PARCLOSE7">
-        <ns2:Bounds x="1300" y="100" width="50" height="50" />
+      <ns1:BPMNShape id="_BPMNShape_Co1" bpmnElement="Co1">
+        <ns2:Bounds x="1300" y="100" width="100" height="80" />
       </ns1:BPMNShape>
       <ns1:BPMNShape id="_BPMNShape_In3" bpmnElement="In3">
         <ns2:Bounds x="1450" y="100" width="100" height="80" />
@@ -142,28 +142,28 @@
         <ns3:waypoint x="600" y="125" />
         <ns3:waypoint x="700" y="140" />
       </ns1:BPMNEdge>
-      <ns1:BPMNEdge id="Flow_Par2_Re2_di" bpmnElement="Flow_Par2_Re2">
+      <ns1:BPMNEdge id="Flow_Par2_PARCLOSE5_di" bpmnElement="Flow_Par2_PARCLOSE5">
         <ns3:waypoint x="600" y="125" />
-        <ns3:waypoint x="850" y="140" />
+        <ns3:waypoint x="1000" y="125" />
       </ns1:BPMNEdge>
       <ns1:BPMNEdge id="Flow_En8_En4_di" bpmnElement="Flow_En8_En4">
         <ns3:waypoint x="800" y="140" />
-        <ns3:waypoint x="1000" y="140" />
+        <ns3:waypoint x="850" y="140" />
       </ns1:BPMNEdge>
-      <ns1:BPMNEdge id="Flow_Re2_Co1_di" bpmnElement="Flow_Re2_Co1">
+      <ns1:BPMNEdge id="Flow_En4_PARCLOSE5_di" bpmnElement="Flow_En4_PARCLOSE5">
         <ns3:waypoint x="950" y="140" />
+        <ns3:waypoint x="1000" y="125" />
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge id="Flow_PARCLOSE5_Re2_di" bpmnElement="Flow_PARCLOSE5_Re2">
+        <ns3:waypoint x="1050" y="125" />
         <ns3:waypoint x="1150" y="140" />
       </ns1:BPMNEdge>
-      <ns1:BPMNEdge id="Flow_En4_PARCLOSE7_di" bpmnElement="Flow_En4_PARCLOSE7">
-        <ns3:waypoint x="1100" y="140" />
-        <ns3:waypoint x="1300" y="125" />
-      </ns1:BPMNEdge>
-      <ns1:BPMNEdge id="Flow_Co1_PARCLOSE7_di" bpmnElement="Flow_Co1_PARCLOSE7">
+      <ns1:BPMNEdge id="Flow_Re2_Co1_di" bpmnElement="Flow_Re2_Co1">
         <ns3:waypoint x="1250" y="140" />
-        <ns3:waypoint x="1300" y="125" />
+        <ns3:waypoint x="1300" y="140" />
       </ns1:BPMNEdge>
-      <ns1:BPMNEdge id="Flow_PARCLOSE7_In3_di" bpmnElement="Flow_PARCLOSE7_In3">
-        <ns3:waypoint x="1350" y="125" />
+      <ns1:BPMNEdge id="Flow_Co1_In3_di" bpmnElement="Flow_Co1_In3">
+        <ns3:waypoint x="1400" y="140" />
         <ns3:waypoint x="1450" y="140" />
       </ns1:BPMNEdge>
       <ns1:BPMNEdge id="Flow_In3_G0_di" bpmnElement="Flow_In3_G0">

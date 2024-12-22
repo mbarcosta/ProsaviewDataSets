@@ -30,12 +30,12 @@
         "No6"
       ],
       "outComing": [
-        "En4"
+        "Re2"
       ]
     },
     {
-      "id": "En4",
-      "name": "Forward Complaint Externally",
+      "id": "Re2",
+      "name": "Receive References",
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
@@ -51,11 +51,11 @@
       "type": "PARALLEL_GATEWAY",
       "branch": "0.0.",
       "inComing": [
-        "En4"
+        "Re2"
       ],
       "outComing": [
         "En8",
-        "Re2"
+        "En4"
       ]
     },
     {
@@ -71,8 +71,8 @@
       ]
     },
     {
-      "id": "Re2",
-      "name": "Receive References",
+      "id": "En4",
+      "name": "Forward Complaint Externally",
       "type": "TASK",
       "branch": "0.0.1.2.",
       "inComing": [
@@ -89,7 +89,7 @@
       "branch": "0.0.1.1.",
       "inComing": [
         "En8",
-        "Re2"
+        "En4"
       ],
       "outComing": [
         "Co1"

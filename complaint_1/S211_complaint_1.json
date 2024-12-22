@@ -30,32 +30,32 @@
         "No6"
       ],
       "outComing": [
-        "Re2"
+        "Par2"
       ]
     },
     {
-      "id": "Re2",
-      "name": "Receive References",
-      "type": "TASK",
+      "id": "Par2",
+      "name": "PAR",
+      "type": "PARALLEL_GATEWAY",
       "branch": "0.0.",
       "inComing": [
         "Ab1"
       ],
       "outComing": [
-        "Par3"
+        "En8",
+        "Re2"
       ]
     },
     {
-      "id": "Par3",
-      "name": "PAR",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.",
+      "id": "En8",
+      "name": "Forward Complaint Internally",
+      "type": "TASK",
+      "branch": "0.0.1.1.",
       "inComing": [
-        "Re2"
+        "Par2"
       ],
       "outComing": [
-        "En4",
-        "Co1"
+        "En4"
       ]
     },
     {
@@ -64,19 +64,19 @@
       "type": "TASK",
       "branch": "0.0.1.1.",
       "inComing": [
-        "Par3"
+        "En8"
       ],
       "outComing": [
         "PARCLOSE6"
       ]
     },
     {
-      "id": "Co1",
-      "name": "Confirm External Reference",
+      "id": "Re2",
+      "name": "Receive References",
       "type": "TASK",
       "branch": "0.0.1.2.",
       "inComing": [
-        "Par3"
+        "Par2"
       ],
       "outComing": [
         "PARCLOSE6"
@@ -89,7 +89,19 @@
       "branch": "0.0.1.1.",
       "inComing": [
         "En4",
+        "Re2"
+      ],
+      "outComing": [
         "Co1"
+      ]
+    },
+    {
+      "id": "Co1",
+      "name": "Confirm External Reference",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE6"
       ],
       "outComing": [
         "In3"
@@ -101,44 +113,19 @@
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
-        "PARCLOSE6"
+        "Co1"
       ],
       "outComing": [
-        "Par8"
-      ]
-    },
-    {
-      "id": "Par8",
-      "name": "PAR",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.",
-      "inComing": [
-        "In3"
-      ],
-      "outComing": [
-        "En8",
         "G0"
-      ]
-    },
-    {
-      "id": "En8",
-      "name": "Forward Complaint Internally",
-      "type": "TASK",
-      "branch": "0.0.1.1.",
-      "inComing": [
-        "Par8"
-      ],
-      "outComing": [
-        "An1"
       ]
     },
     {
       "id": "G0",
       "name": "G0",
       "type": "EXCLUSIVE_GATEWAY",
-      "branch": "0.0.1.2.",
+      "branch": "0.0.",
       "inComing": [
-        "Par8"
+        "In3"
       ],
       "outComing": [
         "In1",
@@ -149,59 +136,34 @@
       "id": "In1",
       "name": "Inform Complainant",
       "type": "TASK",
-      "branch": "0.0.1.2.1.1.",
+      "branch": "0.0.0.1.",
       "inComing": [
         "G0"
       ],
       "outComing": [
-        "XORCLOSE14"
+        "XORCLOSE12"
       ]
     },
     {
       "id": "An1",
       "name": "Analyze Complaint",
       "type": "TASK",
-      "branch": "0.0.1.2.1.2.",
+      "branch": "0.0.0.2.",
       "inComing": [
         "G0"
       ],
       "outComing": [
-        "XORCLOSE14"
+        "XORCLOSE12"
       ]
     },
     {
-      "id": "An1",
-      "name": "Analyze Complaint",
-      "type": "TASK",
-      "branch": "0.0.1.1.",
-      "inComing": [
-        "En8"
-      ],
-      "outComing": [
-        "PARCLOSE15"
-      ]
-    },
-    {
-      "id": "XORCLOSE14",
-      "name": "XORCLOSE14",
+      "id": "XORCLOSE12",
+      "name": "XORCLOSE12",
       "type": "EXCLUSIVE_GATEWAY",
-      "branch": "0.0.1.2.1.1.",
+      "branch": "0.0.0.1.",
       "inComing": [
         "In1",
         "An1"
-      ],
-      "outComing": [
-        "PARCLOSE15"
-      ]
-    },
-    {
-      "id": "PARCLOSE15",
-      "name": "PARCLOSE15",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.1.",
-      "inComing": [
-        "An1",
-        "XORCLOSE14"
       ],
       "outComing": [
         "END"
@@ -211,9 +173,9 @@
       "id": "END",
       "name": "END_EVENT",
       "type": "END_EVENT",
-      "branch": "0.0.1.1.",
+      "branch": "0.0.0.1.",
       "inComing": [
-        "PARCLOSE15"
+        "XORCLOSE12"
       ],
       "outComing": []
     }

@@ -42,13 +42,13 @@
         "Ab1"
       ],
       "outComing": [
-        "En8",
+        "En4",
         "PARCLOSE4"
       ]
     },
     {
-      "id": "En8",
-      "name": "Forward Complaint Internally",
+      "id": "En4",
+      "name": "Forward Complaint Externally",
       "type": "TASK",
       "branch": "0.0.1.1.",
       "inComing": [
@@ -64,7 +64,7 @@
       "type": "PARALLEL_GATEWAY",
       "branch": "0.0.1.1.",
       "inComing": [
-        "En8",
+        "En4",
         "Par2"
       ],
       "outComing": [
@@ -80,13 +80,13 @@
         "PARCLOSE4"
       ],
       "outComing": [
-        "En4",
+        "En8",
         "Re2"
       ]
     },
     {
-      "id": "En4",
-      "name": "Forward Complaint Externally",
+      "id": "En8",
+      "name": "Forward Complaint Internally",
       "type": "TASK",
       "branch": "0.0.1.1.",
       "inComing": [
@@ -114,7 +114,7 @@
       "type": "PARALLEL_GATEWAY",
       "branch": "0.0.1.1.",
       "inComing": [
-        "En4",
+        "En8",
         "Re2"
       ],
       "outComing": [

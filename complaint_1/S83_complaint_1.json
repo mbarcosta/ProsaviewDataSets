@@ -30,104 +30,66 @@
         "No6"
       ],
       "outComing": [
-        "Par2"
-      ]
-    },
-    {
-      "id": "Par2",
-      "name": "PAR",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.",
-      "inComing": [
-        "Ab1"
-      ],
-      "outComing": [
-        "Re2",
-        "Co1"
+        "Re2"
       ]
     },
     {
       "id": "Re2",
       "name": "Receive References",
       "type": "TASK",
-      "branch": "0.0.1.1.",
+      "branch": "0.0.",
       "inComing": [
-        "Par2"
+        "Ab1"
       ],
       "outComing": [
-        "Par4"
+        "Par3"
       ]
     },
     {
-      "id": "Par4",
+      "id": "Par3",
       "name": "PAR",
       "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.1.",
+      "branch": "0.0.",
       "inComing": [
         "Re2"
       ],
       "outComing": [
-        "En4",
-        "PARCLOSE8"
-      ]
-    },
-    {
-      "id": "En4",
-      "name": "Forward Complaint Externally",
-      "type": "TASK",
-      "branch": "0.0.1.1.2.1.",
-      "inComing": [
-        "Par4"
-      ],
-      "outComing": [
-        "En8"
+        "Co1",
+        "PARCLOSE5"
       ]
     },
     {
       "id": "Co1",
       "name": "Confirm External Reference",
       "type": "TASK",
-      "branch": "0.0.1.2.",
+      "branch": "0.0.1.1.",
       "inComing": [
-        "Par2"
+        "Par3"
       ],
       "outComing": [
-        "PARCLOSE9"
+        "PARCLOSE5"
       ]
     },
     {
-      "id": "En8",
-      "name": "Forward Complaint Internally",
-      "type": "TASK",
-      "branch": "0.0.1.1.2.1.",
-      "inComing": [
-        "En4"
-      ],
-      "outComing": [
-        "PARCLOSE8"
-      ]
-    },
-    {
-      "id": "PARCLOSE8",
-      "name": "PARCLOSE8",
+      "id": "PARCLOSE5",
+      "name": "PARCLOSE5",
       "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.1.2.2.",
-      "inComing": [
-        "Par4",
-        "En8"
-      ],
-      "outComing": [
-        "PARCLOSE9"
-      ]
-    },
-    {
-      "id": "PARCLOSE9",
-      "name": "PARCLOSE9",
-      "type": "PARALLEL_GATEWAY",
-      "branch": "0.0.1.2.",
+      "branch": "0.0.1.1.",
       "inComing": [
         "Co1",
-        "PARCLOSE8"
+        "Par3"
+      ],
+      "outComing": [
+        "En4"
+      ]
+    },
+    {
+      "id": "En4",
+      "name": "Forward Complaint Externally",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "PARCLOSE5"
       ],
       "outComing": [
         "In3"
@@ -139,7 +101,7 @@
       "type": "TASK",
       "branch": "0.0.",
       "inComing": [
-        "PARCLOSE9"
+        "En4"
       ],
       "outComing": [
         "G0"
@@ -167,7 +129,7 @@
         "G0"
       ],
       "outComing": [
-        "XORCLOSE14"
+        "XORCLOSE11"
       ]
     },
     {
@@ -179,17 +141,29 @@
         "G0"
       ],
       "outComing": [
-        "XORCLOSE14"
+        "XORCLOSE11"
       ]
     },
     {
-      "id": "XORCLOSE14",
-      "name": "XORCLOSE14",
+      "id": "XORCLOSE11",
+      "name": "XORCLOSE11",
       "type": "EXCLUSIVE_GATEWAY",
       "branch": "0.0.0.1.",
       "inComing": [
         "In1",
         "An1"
+      ],
+      "outComing": [
+        "En8"
+      ]
+    },
+    {
+      "id": "En8",
+      "name": "Forward Complaint Internally",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XORCLOSE11"
       ],
       "outComing": [
         "END"
@@ -199,9 +173,9 @@
       "id": "END",
       "name": "END_EVENT",
       "type": "END_EVENT",
-      "branch": "0.0.0.1.",
+      "branch": "0.0.",
       "inComing": [
-        "XORCLOSE14"
+        "En8"
       ],
       "outComing": []
     }
