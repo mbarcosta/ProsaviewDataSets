@@ -1,0 +1,223 @@
+{
+  "fragments": [
+    {
+      "id": "Default_init",
+      "type": "START_EVENT",
+      "branch": "0.0.",
+      "inComing": [],
+      "outComing": [
+        "Op4"
+      ]
+    },
+    {
+      "id": "Op4",
+      "name": "Open",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Default_init"
+      ],
+      "outComing": [
+        "XOR_JMPAA_Op4_As8"
+      ]
+    },
+    {
+      "id": "Up6",
+      "name": "Update",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_Op4_As8"
+      ],
+      "outComing": [
+        "Re3"
+      ]
+    },
+    {
+      "id": "Re3",
+      "name": "Reassignment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Up6"
+      ],
+      "outComing": [
+        "Op5"
+      ]
+    },
+    {
+      "id": "Op5",
+      "name": "Operator Update",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "Re3"
+      ],
+      "outComing": [
+        "XOR_JMPBB_As8_As8"
+      ]
+    },
+    {
+      "id": "As8",
+      "name": "Assignment",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPBB_As8_As8"
+      ],
+      "outComing": [
+        "XOR_JMPAA_As8_As8"
+      ]
+    },
+    {
+      "id": "Cl6",
+      "name": "Closed",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_As8_As8"
+      ],
+      "outComing": [
+        "XOR_JMPAA_Cl6_Fi6"
+      ]
+    },
+    {
+      "id": "Ca2",
+      "name": "Caused by CI",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_Cl6_Fi6"
+      ],
+      "outComing": [
+        "XOR_JMPAA_Ca2_Fi6"
+      ]
+    },
+    {
+      "id": "St3",
+      "name": "Status Change",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_Ca2_Fi6"
+      ],
+      "outComing": [
+        "Qu1"
+      ]
+    },
+    {
+      "id": "Qu1",
+      "name": "Quality Indicator Fixed",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "St3"
+      ],
+      "outComing": [
+        "XOR_JMPBB_Cl6_Fi6"
+      ]
+    },
+    {
+      "id": "Fi6",
+      "name": "Finish",
+      "type": "TASK",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPBB_Cl6_Fi6"
+      ],
+      "outComing": [
+        "END"
+      ]
+    },
+    {
+      "id": "END",
+      "name": "END_EVENT",
+      "type": "END_EVENT",
+      "branch": "0.0.",
+      "inComing": [
+        "Fi6"
+      ],
+      "outComing": []
+    },
+    {
+      "id": "XOR_JMPAA_Op4_As8",
+      "name": "XOR_JMPAA_Open",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Op4"
+      ],
+      "outComing": [
+        "Up6",
+        "XOR_JMPBB_As8_As8"
+      ]
+    },
+    {
+      "id": "XOR_JMPAA_Ca2_Fi6",
+      "name": "XOR_JMPAA_Caused by CI",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Ca2"
+      ],
+      "outComing": [
+        "St3",
+        "XOR_JMPBB_Cl6_Fi6"
+      ]
+    },
+    {
+      "id": "XOR_JMPAA_As8_As8",
+      "name": "XOR_JMPAA_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "As8"
+      ],
+      "outComing": [
+        "Cl6",
+        "XOR_JMPBB_As8_As8"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_As8_As8",
+      "name": "XOR_JMPBB_Assignment",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_As8_As8",
+        "Op5",
+        "XOR_JMPAA_Op4_As8"
+      ],
+      "outComing": [
+        "As8"
+      ]
+    },
+    {
+      "id": "XOR_JMPAA_Cl6_Fi6",
+      "name": "XOR_JMPAA_Closed",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "Cl6"
+      ],
+      "outComing": [
+        "Ca2",
+        "XOR_JMPBB_Cl6_Fi6"
+      ]
+    },
+    {
+      "id": "XOR_JMPBB_Cl6_Fi6",
+      "name": "XOR_JMPBB_Finish",
+      "type": "EXCLUSIVE_GATEWAY",
+      "branch": "0.0.",
+      "inComing": [
+        "XOR_JMPAA_Cl6_Fi6",
+        "Qu1",
+        "XOR_JMPAA_Ca2_Fi6"
+      ],
+      "outComing": [
+        "Fi6"
+      ]
+    }
+  ]
+}
